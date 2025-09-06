@@ -83,7 +83,6 @@ citySearchEl.addEventListener("keypress", function (e) {
   }
 });
 
-
 function updateWeatherDisplay(data) {
   // Update main weather info
   cityNameEl.textContent = data.location.name;
@@ -155,7 +154,24 @@ function updateWeatherDisplay(data) {
 
 // Initialize the app
 document.addEventListener("DOMContentLoaded", function () {
-    
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        // fetch weather with  latitude , longitude
+        getWeather(`${lat},${lon}`);
+      },
+      (error) => {
+        console.error("Error getting location:", error);
+        // default weather
+        getWeather("Cairo");
+      }
+    );
+  } else {
+    // default weather
+    getWeather("Cairo");
+  }
 });
 
 // Add some interactive effects
