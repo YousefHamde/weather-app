@@ -17,17 +17,6 @@ function getWeatherIcon(wmoCode) {
   return icons.get(arr);
 }
 
-function getWeatherDescription(code) {
-  const descriptions = {
-    1000: "Sunny",
-    1003: "Partly cloudy",
-    1006: "Cloudy",
-    1063: "Rainy",
-    1087: "Storm",
-  };
-  return descriptions[code] || "Clear";
-}
-
 // Utility Functions
 function getDayName(dateString, index) {
   if (index === 0) return "Today";
