@@ -28,24 +28,13 @@ function getDayName(dateString, index) {
 
 const apiKey = "bdf5ed7414a0438b816153327250609";
 
-// Fetch matching cities/countries
-async function searchLocation(query) {
-  const res = await fetch(
-    `https://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${query}`
-  );
-  const [data] = await res.json();
-  console.log(data);
-  getWeather(data.country);
-  return data;
-}
-
 //  // Fetch weather for selected city
 const loadingEl = document.getElementById("loading");
 const weatherAppEl = document.getElementById("weatherApp");
 
 async function getWeather(location) {
   try {
-    // Show loading 
+    // Show loading
     ShowLoading();
 
     const res = await fetch(
@@ -54,7 +43,7 @@ async function getWeather(location) {
 
     const data = await res.json();
 
-    // Hide loading 
+    // Hide loading
     HideLoading();
     updateWeatherDisplay(data);
   } catch (error) {
@@ -96,7 +85,7 @@ const citySearchEl = document.getElementById("citySearch");
 citySearchEl.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
     const searchQuery = this.value.trim().toLowerCase();
-    searchLocation(searchQuery);
+    getWeather(searchQuery); // مباشرة
     this.value = "";
   }
 });
@@ -172,14 +161,14 @@ function updateWeatherDisplay(data) {
 
 // Initialize the app
 document.addEventListener("DOMContentLoaded", function () {
-    ShowLoading();
+  ShowLoading();
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
         // fetch weather with  latitude , longitude
-        HideLoading()
+        HideLoading();
         getWeather(`${lat},${lon}`);
       },
       (error) => {
