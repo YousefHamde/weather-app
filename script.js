@@ -201,14 +201,18 @@ citySearchEl.addEventListener("keypress", function (e) {
 document.addEventListener("DOMContentLoaded", function () {
   ShowLoading();
 
-  // جلب الطقس الافتراضي أولاً (Cairo)
-  getWeather("Cairo");
-
-  // جلب الموقع الفعلي إذا ممكن
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
-      (pos) => getWeather(`${pos.coords.latitude},${pos.coords.longitude}`),
-      (err) => console.warn("Location error:", err)
+      (pos) => {
+        getWeather(`${pos.coords.latitude},${pos.coords.longitude}`);
+      },
+      (err) => {
+        console.warn("Location error:", err);
+        getWeather("Cairo");
+      }
     );
+  } else {
+    
+    getWeather("Cairo");
   }
 });
