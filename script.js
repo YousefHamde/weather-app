@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       (error) => {
         console.error("Error getting location:", error);
-        messageError()
+        messageError();
         // default weather
         getWeather("Cairo");
       }

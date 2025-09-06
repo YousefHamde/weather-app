@@ -41,72 +41,73 @@
           <div class="loading-icon">⛅</div>
           <div class="loading-text">Loading weather...</div>
         </div>
-
-        <div class="content-wrapper" id="weatherApp" style="display: none">
-          <!-- Left Section -->
-          <div class="left-section">
-            <!-- Main Weather Card -->
-            <div class="weather-card main-weather">
-              <div class="weather-info">
-                <h2 id="cityName">Egypt</h2>
-                <p id="rainChance">Chance of rain: 0%</p>
-                <div class="temperature" id="currentTemp">31°</div>
+        <div id="weatherApp" style="display: none">
+          <div class="content-wrapper">
+            <!-- Left Section -->
+            <div class="left-section">
+              <!-- Main Weather Card -->
+              <div class="weather-card main-weather">
+                <div class="weather-info">
+                  <h2 id="cityName">Egypt</h2>
+                  <p id="rainChance">Chance of rain: 0%</p>
+                  <div class="temperature" id="currentTemp">31°</div>
+                </div>
+                <div class="weather-icon" id="mainWeatherIcon">☀️</div>
               </div>
-              <div class="weather-icon" id="mainWeatherIcon">☀️</div>
+
+              <!-- Today's Forecast -->
+              <div class="weather-card">
+                <h3>TODAY'S FORECAST</h3>
+                <div class="hourly-forecast" id="hourlyForecast">
+                  <!-- Hourly data will be inserted here -->
+                </div>
+              </div>
+
+              <!-- Air Conditions -->
+              <div class="weather-card">
+                <div class="card-header">
+                  <h3>AIR CONDITIONS</h3>
+                </div>
+                <div class="air-conditions">
+                  <div class="condition-item">
+                    <div class="condition-label">
+                      <span class="icon">🌡️</span>
+                      <span>Real Feel</span>
+                    </div>
+                    <div class="condition-value" id="realFeel">30°</div>
+                  </div>
+                  <div class="condition-item">
+                    <div class="condition-label">
+                      <span class="icon">💨</span>
+                      <span>Wind</span>
+                    </div>
+                    <div class="condition-value" id="windSpeed">0.2 km/h</div>
+                  </div>
+                  <div class="condition-item">
+                    <div class="condition-label">
+                      <span class="icon">💧</span>
+                      <span>Chance of rain</span>
+                    </div>
+                    <div class="condition-value" id="rainChanceValue">0%</div>
+                  </div>
+                  <div class="condition-item">
+                    <div class="condition-label">
+                      <span class="icon">☀️</span>
+                      <span>UV Index</span>
+                    </div>
+                    <div class="condition-value" id="uvIndex">3</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <!-- Today's Forecast -->
-            <div class="weather-card">
-              <h3>TODAY'S FORECAST</h3>
-              <div class="hourly-forecast" id="hourlyForecast">
-                <!-- Hourly data will be inserted here -->
-              </div>
-            </div>
-
-            <!-- Air Conditions -->
-            <div class="weather-card">
-              <div class="card-header">
-                <h3>AIR CONDITIONS</h3>
-              </div>
-              <div class="air-conditions">
-                <div class="condition-item">
-                  <div class="condition-label">
-                    <span class="icon">🌡️</span>
-                    <span>Real Feel</span>
-                  </div>
-                  <div class="condition-value" id="realFeel">30°</div>
+            <!-- Right Section - 7-Day Forecast -->
+            <div class="right-section">
+              <div class="weather-card forecast-card">
+                <h3>7-DAY FORECAST</h3>
+                <div class="weekly-forecast" id="weeklyForecast">
+                  <!-- Weekly forecast will be inserted here -->
                 </div>
-                <div class="condition-item">
-                  <div class="condition-label">
-                    <span class="icon">💨</span>
-                    <span>Wind</span>
-                  </div>
-                  <div class="condition-value" id="windSpeed">0.2 km/h</div>
-                </div>
-                <div class="condition-item">
-                  <div class="condition-label">
-                    <span class="icon">💧</span>
-                    <span>Chance of rain</span>
-                  </div>
-                  <div class="condition-value" id="rainChanceValue">0%</div>
-                </div>
-                <div class="condition-item">
-                  <div class="condition-label">
-                    <span class="icon">☀️</span>
-                    <span>UV Index</span>
-                  </div>
-                  <div class="condition-value" id="uvIndex">3</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right Section - 7-Day Forecast -->
-          <div class="right-section">
-            <div class="weather-card forecast-card">
-              <h3>7-DAY FORECAST</h3>
-              <div class="weekly-forecast" id="weeklyForecast">
-                <!-- Weekly forecast will be inserted here -->
               </div>
             </div>
           </div>
