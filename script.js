@@ -40,14 +40,43 @@ async function searchLocation(query) {
 }
 
 //  // Fetch weather for selected city
+const loadingEl = document.getElementById("loading");
+const weatherAppEl = document.getElementById("weatherApp");
+
 async function getWeather(location) {
-  const res = await fetch(
-    `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}&days=7`
-  );
-  const data = await res.json();
-  console.log(data);
-  updateWeatherDisplay(data);
-  return data;
+  try {
+    // Show loading 
+    ShowLoading();
+
+    const res = await fetch(
+      `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}&days=7`
+    );
+
+    const data = await res.json();
+
+    // Hide loading 
+    HideLoading();
+    updateWeatherDisplay(data);
+  } catch (error) {
+    console.error("Error fetching weather:", error);
+    messageError();
+  }
+}
+
+function ShowLoading() {
+  // Show loading
+  loadingEl.style.display = "flex";
+  weatherAppEl.style.display = "none";
+}
+
+function HideLoading() {
+  // Hide loading + show weather
+  loadingEl.style.display = "none";
+  weatherAppEl.style.display = "block";
+}
+
+function messageError() {
+  loadingEl.innerHTML = `<div class="loading-text">❌ Failed to load data</div>`;
 }
 
 // DOM Elements
@@ -143,16 +172,19 @@ function updateWeatherDisplay(data) {
 
 // Initialize the app
 document.addEventListener("DOMContentLoaded", function () {
+    ShowLoading();
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
         // fetch weather with  latitude , longitude
+        HideLoading()
         getWeather(`${lat},${lon}`);
       },
       (error) => {
         console.error("Error getting location:", error);
+        messageError()
         // default weather
         getWeather("Cairo");
       }

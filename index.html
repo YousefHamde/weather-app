@@ -12,34 +12,37 @@
   </head>
   <body>
     <div class="weather-app">
-
-
       <!-- Main Content -->
       <div class="main-content">
-          
-          <!-- Search Bar -->
-          <div class="search-container">
-            <div class="search-box">
-              <svg
-                class="search-icon"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.35-4.35" />
-              </svg>
-              <input
-                type="text"
-                id="citySearch"
-                placeholder="Search for cities"
-              />
-            </div>
+        <!-- Search Bar -->
+        <div class="search-container">
+          <div class="search-box">
+            <svg
+              class="search-icon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+            <input
+              type="text"
+              id="citySearch"
+              placeholder="Search for cities"
+            />
           </div>
-          <div class="content-wrapper">
+        </div>
+
+        <div id="loading" class="loading" style="display: none">
+          <div class="loading-icon">⛅</div>
+          <div class="loading-text">Loading weather...</div>
+        </div>
+
+        <div class="content-wrapper" id="weatherApp" style="display: none">
           <!-- Left Section -->
           <div class="left-section">
             <!-- Main Weather Card -->
@@ -64,7 +67,6 @@
             <div class="weather-card">
               <div class="card-header">
                 <h3>AIR CONDITIONS</h3>
-               
               </div>
               <div class="air-conditions">
                 <div class="condition-item">
