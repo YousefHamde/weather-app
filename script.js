@@ -1,20 +1,22 @@
-// Weather Icon Mapping Function
-function getWeatherIcon(wmoCode) {
+function getWeatherIcon(code) {
   const icons = new Map([
-    [[0], "☀️"],
-    [[1], "🌤"],
-    [[2], "⛅️"],
-    [[3], "☁️"],
-    [[45, 48], "🌫"],
-    [[51, 56, 61, 66, 80], "🌦"],
-    [[53, 55, 63, 65, 57, 67, 81, 82], "🌧"],
-    [[71, 73, 75, 77, 85, 86], "🌨"],
-    [[95], "🌩"],
-    [[96, 99], "⛈"],
+    [[1000], "☀️"],
+    [[1003], "🌤"],
+    [[1006], "☁️"],
+    [[1009], "☁️☁️"],
+    [[1030, 1135, 1147], "🌫"],
+    [[1063, 1180], "🌦"],
+    [[1066, 1114, 1213], "🌨"],
+    [[1087, 1273, 1276], "⛈"],
+    [[1150, 1168, 1171], "🌧"],
+    [[1183, 1186, 1192, 1195], "🌧"],
+    [[1216, 1225], "❄️"],
+    [[1240, 1243, 1246], "🌧"],
+    [[1279, 1282], "⛈"],
   ]);
-  const arr = [...icons.keys()].find((key) => key.includes(wmoCode));
-  if (!arr) return "☀️";
-  return icons.get(arr);
+
+  const keyArr = [...icons.keys()].find((arr) => arr.includes(code));
+  return keyArr ? icons.get(keyArr) : "❓";
 }
 
 // Utility Functions
@@ -116,7 +118,7 @@ function updateWeatherDisplay(data) {
         hour12: true,
       });
 
-      const iconUrl = `https:${hour.condition.icon}`;
+      // const iconUrl = `https:${hour.condition.icon}`;
 
       hourlyItem.innerHTML = `
       <div class="hourly-time">${time}</div>
@@ -146,9 +148,9 @@ function updateWeatherDisplay(data) {
     forecastDay.innerHTML = `
     <div class="forecast-left">
       <span class="forecast-day-name">${getDayName(day.date, index)}</span>
-      <span class="forecast-icon"><img src="${iconUrl}" alt="${
-      day.day.condition.text
-    }" /></span>
+      <span class="forecast-icon">${getWeatherIcon(
+        day.day.condition.code
+      )}</span>
       <span class="forecast-condition">${day.day.condition.text}</span>
     </div>
     <div class="forecast-temps">${Math.round(day.day.maxtemp_c)}°/${Math.round(
